@@ -7,15 +7,32 @@ import ShipInfo from '../ShipInfo/ShipInfo';           // Exercici 2
 const ShipsList = () => {
     const [ships, setShips] = useState([]);
     
-    // Exercici 2 --> estat per la nau seleccionada i poder ensenyar la informació
-    const [selectedShip, setSelectedShip] = useState(null);
+    // Exercici 3 --> crear la paginació
+    const [nextPage, setNextPage] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     // Exercici 1 --> utilitzar useEffect per accedir a l'api
     useEffect(() => {
         fetch(`https://swapi.dev/api/starships/`)
         .then(response => response.json())
-        .then(data => setShips(data.results));
+        .then(data => {
+            setShips(data.results);
+            // Exercici 3 --> configurar la pàgina següent
+            setNextPage(data.next);
+        });
     }, []);
+
+    // Exercici 3 --> carregar la següent pàgina
+    const fetchNextPage = async () => {
+        if (nextPage) {
+            setLoading(true);
+            const response = await fetch(nextPage);
+            const data = await response.json();
+            setShips(prevShips => [...prevShips, ...data.results]);
+            setNextPage(data.next);
+            setLoading(false);
+        }
+    };
 
     // Exercici 2 --> obrir informació de la nau seleccionada
     const showShipInfo = (ship) => {
@@ -37,6 +54,9 @@ const ShipsList = () => {
                   <Ship name={ship.name} model={ship.model} onClick={() => showShipInfo(ship)}/>
                 </div>
             ))}
+            <button onClick={fetchNextPage} disabled={loading}>
+                {loading ? "Loading..." : "View More"}
+            </button>
         </div>
     );
 }
