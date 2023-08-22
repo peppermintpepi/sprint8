@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, cloneElement } from "react";
 import ReactDOMServer from 'react-dom/server'
 import Ship from "../Ships/Ships";
 import ShipInfo from '../ShipInfo/ShipInfo';           // Exercici 2
+import { AppLogo, AuthenticationButtons, ViewMoreButton, MainMenu, CloseButton } from "./ShipListStyles";
+
 
 // Exercici 1 --> accedir a l'api amb la informació de les naus
 const ShipsList = () => {
     const [ships, setShips] = useState([]);
+    const [selectedShip, setSelectedShip] = useState(null);
     
     // Exercici 3 --> crear la paginació
     const [nextPage, setNextPage] = useState(null);
@@ -36,27 +39,49 @@ const ShipsList = () => {
 
     // Exercici 2 --> obrir informació de la nau seleccionada
     const showShipInfo = (ship) => {
-        const shipInfoHtml = ReactDOMServer.renderToStaticMarkup(<ShipInfo ship={ship} />);
-        const newWindow = window.open("", "_blank");
+        setSelectedShip(ship);
+    }
 
-        if (newWindow) {
-            newWindow.document.write("<html><body>");
-            newWindow.document.write(shipInfoHtml);
-            newWindow.document.write("</body></html>");
-            newWindow.document.close();
-        }
+    const goBackToList = () => {
+        setSelectedShip(null);
     }
 
     return (
-        <div>
-            {ships.map((ship, index) => (
-                <div key={index}>
-                  <Ship name={ship.name} model={ship.model} onClick={() => showShipInfo(ship)}/>
-                </div>
-            ))}
-            <button onClick={fetchNextPage} disabled={loading}>
-                {loading ? "Loading..." : "View More"}
-            </button>
+        <div> 
+            <AppLogo>
+                <AuthenticationButtons>
+                    <button>LOGIN</button>
+                    <button>SIGN UP</button>
+                </AuthenticationButtons>
+            </AppLogo>
+            <MainMenu>
+                <button>HOME</button>
+                <button>STARSHIPS</button>
+            </MainMenu>
+                {selectedShip ? (
+                    <div>
+                        <CloseButton onClick={goBackToList}>x</CloseButton>
+                        <ShipInfo ship={selectedShip} />
+                    </div>
+                ) : (
+                    <>
+                    {ships.map((ship, index) => (
+                        <div key={index}>
+                            <Ship name={ship.name} model={ship.model} onClick={() => showShipInfo(ship)}/>
+                        </div>
+                    ))}
+                    {nextPage && !loading && (
+                        <ViewMoreButton onClick={fetchNextPage}>
+                            VIEW MORE
+                        </ViewMoreButton>
+                    )}
+                    {loading && (
+                        <ViewMoreButton disabled>
+                            Loading...
+                        </ViewMoreButton>
+                    )}
+                </>
+            )}
         </div>
     );
 }

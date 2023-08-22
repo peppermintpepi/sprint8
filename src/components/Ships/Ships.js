@@ -1,4 +1,5 @@
 import React from "react";
+import { ShipFrame, ShipName, ShipModel } from "./ShipsStyles"; 
 
 // Exercici 1 --> renderitzar cada nau per pantalla
 const Ship = ({ name, model, onClick }) => {
@@ -9,7 +10,11 @@ const Ship = ({ name, model, onClick }) => {
 
     return (
         <div onClick={onClick}>
-            <p><b>{toCapitalLetter(name)}:</b> {toCapitalLetter(model)}</p>
+            { /* Exercic 4 --> disseny app */ }
+            <ShipFrame>
+                <ShipName>{toCapitalLetter(name)} </ShipName>
+                <ShipModel>{toCapitalLetter(model)}</ShipModel>
+            </ShipFrame>
         </div>
     );
 }

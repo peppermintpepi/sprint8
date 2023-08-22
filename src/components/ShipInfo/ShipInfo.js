@@ -1,4 +1,5 @@
 import React from "react";
+import { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText } from "./ShipInfoStyles";
 
 // Exercici 2 --> component per renderitzar tota la informació de les naus
 const ShipInfo = ({ ship }) => {
@@ -8,23 +9,40 @@ const ShipInfo = ({ ship }) => {
 
     return (
         <div>
-            <h2>{ship.name}</h2>
-            <p><b>MODEL:</b> {toCapitalLetter(ship.model)}</p>
-            <p><b>STARSHIP CLASS:</b> {toCapitalLetter(ship.starship_class)}</p>
-            <p><b>MANUFACTURER:</b> {toCapitalLetter(ship.manufacturer)}</p>
-            <p><b>OST:</b> {toCapitalLetter(ship.cost_in_credits)}</p>
+            <BgdImg>
+                <NameTitle>{toCapitalLetter(ship.name)}</NameTitle>
 
-            <p><b>CREW:</b> {toCapitalLetter(ship.crew)}</p>
-            <p><b>PASSENGER CAPACITY:</b> {toCapitalLetter(ship.passengers)}</p>
-            <p><b>CARGO CAPACITY:</b> {toCapitalLetter(ship.cargo_capacity)}</p>
-            <p><b>CONSUMABLES:</b>{toCapitalLetter(ship.consumables)}</p>
+                    <CenteredContainer>
+                        <p><b>MODEL:</b> {toCapitalLetter(ship.model)}</p>
+                    </CenteredContainer>
+                    <CenteredContainer>
+                        <p><b>STARSHIP CLASS:</b> {toCapitalLetter(ship.starship_class)}</p>
+                    </CenteredContainer>
+                    <CenteredContainer>
+                        <p><b>MANUFACTURER:</b> {toCapitalLetter(ship.manufacturer)}</p>
+                    </CenteredContainer>
+                    <CenteredContainer>
+                        <p><b>OST:</b> {toCapitalLetter(ship.cost_in_credits)}</p>
+                    </CenteredContainer>
 
-            <p><b>PILOTS:</b> {toCapitalLetter(ship.pilots.join(', '))}</p>
+                <MainContainer>
+                    <TextContainer>
+                        <TextDesign><b>CREW:</b> {toCapitalLetter(ship.crew)}</TextDesign>
+                        <TextDesign><b>PASSENGER CAPACITY:</b> {toCapitalLetter(ship.passengers)}</TextDesign>
+                        <TextDesign><b>CARGO CAPACITY:</b> {toCapitalLetter(ship.cargo_capacity)}</TextDesign>
+                        <TextDesign><b>CONSUMABLES:</b>{toCapitalLetter(ship.consumables)}</TextDesign>
+                    </TextContainer>
 
-            <p><b>LENGTH:</b> {toCapitalLetter(ship.length)}</p>
-            <p><b>MAXIMUM ATMOSPHERING SPEED:</b> {toCapitalLetter(ship.max_atmosphering_speed)}</p>
-            <p><b>HYPERDRIVE RATING:</b> {toCapitalLetter(ship.hyperdrive_rating)}</p>
-            <p><b>MAXIMUM SPEED IN REALSPACE:</b> {toCapitalLetter(ship.MGLT)}</p>
+                    <TextContainer>
+                        <TextDesign><b>LENGTH:</b> {toCapitalLetter(ship.length)}</TextDesign>
+                        <TextDesign><b>MAXIMUM ATMOSPHERING SPEED:</b> {toCapitalLetter(ship.max_atmosphering_speed)}</TextDesign>
+                        <TextDesign><b>HYPERDRIVE RATING:</b> {toCapitalLetter(ship.hyperdrive_rating)}</TextDesign>
+                        <TextDesign><b>MAXIMUM SPEED IN REALSPACE:</b> {toCapitalLetter(ship.MGLT)}</TextDesign>
+                    </TextContainer>
+                </MainContainer>
+                
+                <PilotsText><b>PILOTS:</b> {toCapitalLetter(ship.pilots.join(', '))}</PilotsText>
+            </BgdImg>
         </div>
     );
 }
