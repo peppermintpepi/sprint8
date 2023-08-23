@@ -1,5 +1,5 @@
-import React, { useState, useEffect, cloneElement } from "react";
-import ReactDOMServer from 'react-dom/server'
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Ship from "../Ships/Ships";
 import ShipInfo from '../ShipInfo/ShipInfo';           // Exercici 2
 import { AppLogo, AuthenticationButtons, ViewMoreButton, MainMenu, CloseButton } from "./ShipListStyles";
@@ -55,8 +55,12 @@ const ShipsList = () => {
                 </AuthenticationButtons>
             </AppLogo>
             <MainMenu>
-                <button>HOME</button>
-                <button>STARSHIPS</button>
+                <Link to='/'>
+                    <button>HOME</button>
+                </Link>
+                <Link to='/ships'>
+                    <button>STARSHIPS</button>
+                </Link>
             </MainMenu>
                 {selectedShip ? (
                     <div>

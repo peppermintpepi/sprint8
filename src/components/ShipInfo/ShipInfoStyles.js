@@ -7,7 +7,8 @@ const BgdImg = styled.div `
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 150vh;
+    min-height: auto;
+    padding: 2rem;
 `
 
 const NameTitle = styled.h1 `
