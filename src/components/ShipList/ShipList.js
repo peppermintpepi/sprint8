@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import Ship from "../Ships/Ships";
 import ShipInfo from '../ShipInfo/ShipInfo';           // Exercici 2
 import { AppLogo, AuthenticationButtons, ViewMoreButton, MainMenu, CloseButton } from "./ShipListStyles";
-
 
 // Exercici 1 --> accedir a l'api amb la informació de les naus
 const ShipsList = () => {
@@ -13,6 +13,9 @@ const ShipsList = () => {
     // Exercici 3 --> crear la paginació
     const [nextPage, setNextPage] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    // Exercici 6 --> accedir al Login
+    const [showLogin, setShowLogin] = useState(false);
 
     // Exercici 1 --> utilitzar useEffect per accedir a l'api
     useEffect(() => {
@@ -50,8 +53,12 @@ const ShipsList = () => {
         <div> 
             <AppLogo>
                 <AuthenticationButtons>
-                    <button>LOGIN</button>
-                    <button>SIGN UP</button>
+                    <Link to='/login'>
+                        <button>LOGIN</button>
+                    </Link>
+                    <Link to='/signup'>
+                        <button>SIGN UP</button>
+                    </Link>
                 </AuthenticationButtons>
             </AppLogo>
             <MainMenu>

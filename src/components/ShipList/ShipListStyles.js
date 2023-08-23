@@ -107,18 +107,22 @@ const ViewMoreButton = styled.button `
 const CloseButton = styled.button `
     position: fixed;
     top: 180px; 
-    right: 10px;
+    right: 15px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     border: none;
-    background-color: transparent;
+    background-color: #adb5bd;
+    border-radius: 50%;
+    height: 2rem;
+    width; 3rem;
+    padding: 0.75rem;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
     font-size: 1.5rem;
-    color: #adb5bd;
+    color: black;
     cursor: pointer;
     margin-left: 10px;
     transition: border-bottom-color 0.3s;
