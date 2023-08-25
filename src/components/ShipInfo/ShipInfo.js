@@ -1,17 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText } from "./ShipInfoStyles";
 
 // Exercici 2 --> component per renderitzar tota la informació de les naus
 const ShipInfo = ({ ship }) => {
+
+    const [image, setImage] = useState(null);
+
     const toCapitalLetter = (str) => {
         return str.toUpperCase();
+    }
+
+
+    useEffect(() => {
+        const getImage = async () => {
+          try {
+            const response = await axios.get(
+              `https://starwars-visualguide.com/assets/img/starships/${getShipId(
+                ship.url
+              )}.jpg`,
+              {
+                responseType: "blob",
+              }
+            );
+            const imageUrl = URL.createObjectURL(response.data);
+            setImage(imageUrl);
+          } catch (error) {
+            console.error("Error fetching image", error);
+          }
+        };
+      
+        getImage();
+      }, [ship]);  
+    const getShipId = (shipUrl) => {
+        const id = shipUrl.split('/').filter(Boolean).slice(-1)[0];
+        return id;
     }
 
     return (
         <div>
             <BgdImg>
                 <NameTitle>{toCapitalLetter(ship.name)}</NameTitle>
-
+                {image && (
+                    <img src={image} alt={toCapitalLetter(ship.name)} style={{ width: "100%" }} /> 
+                )}
+                
                     <CenteredContainer>
                         <p><b>MODEL:</b> {toCapitalLetter(ship.model)}</p>
                     </CenteredContainer>
