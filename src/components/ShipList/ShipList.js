@@ -6,7 +6,7 @@ import ShipInfo from '../ShipInfo/ShipInfo';           // Exercici 2
 import { AppLogo, AuthenticationButtons, ViewMoreButton, MainMenu, CloseButton } from "./ShipListStyles";
 
 // Exercici 1 --> accedir a l'api amb la informació de les naus
-const ShipsList = () => {
+const ShipsList = ({ loggedIn }) => {
     const [ships, setShips] = useState([]);
     const [selectedShip, setSelectedShip] = useState(null);
     

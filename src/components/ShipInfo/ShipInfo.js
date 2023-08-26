@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText } from "./ShipInfoStyles";
+import { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText,
+ImageContainer, Image, UnderLine } from "./ShipInfoStyles";
 
 // Exercici 2 --> component per renderitzar tota la informació de les naus
 const ShipInfo = ({ ship }) => {
@@ -41,9 +42,12 @@ const ShipInfo = ({ ship }) => {
         <div>
             <BgdImg>
                 <NameTitle>{toCapitalLetter(ship.name)}</NameTitle>
-                {image && (
-                    <img src={image} alt={toCapitalLetter(ship.name)} style={{ width: "100%" }} /> 
-                )}
+                <ImageContainer>
+                    {image && (
+                        <Image src={image} alt={toCapitalLetter(ship.name)} style={{ width: "100%" }} /> 
+                    )}
+                    { image && <UnderLine /> }
+                </ImageContainer>
                 
                     <CenteredContainer>
                         <p><b>MODEL:</b> {toCapitalLetter(ship.model)}</p>

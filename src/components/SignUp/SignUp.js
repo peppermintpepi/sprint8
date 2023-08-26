@@ -103,7 +103,7 @@ const SignUp = () => {
                         placeholder="Username"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        hasError={userNameError}
+                        $haserror={userNameError.toString()}
                     />
                     {userNameError && <ErrorText>Fill in</ErrorText>}
                     {existingUserName === userName && <ErrorText>Already registered user</ErrorText>}
@@ -114,7 +114,7 @@ const SignUp = () => {
                         placeholder="Email"
                         value={mail}
                         onChange={(e) => setMail(e.target.value)}
-                        hasError={mailError}
+                        $haserror={mailError.toString()}
                     />
                     {mailError && !mailPattern.test(mail) && <ErrorText>Wrong format. Please enter a valid mail</ErrorText>}
                     {mailError && mailPattern.test(mail) && <ErrorText>Fill in</ErrorText>}
@@ -126,7 +126,7 @@ const SignUp = () => {
                         placeholder="First Name"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        hasError={firstNameError}
+                        $haserror={firstNameError.toString()}
                     />
                     {firstNameError && <ErrorText>Fill in</ErrorText>}
                     </p>
@@ -136,7 +136,7 @@ const SignUp = () => {
                         placeholder="Last Name"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        hasError={lastNameError}
+                        $haserror={lastNameError.toString()}
                     />
                     {lastNameError && <ErrorText>Fill in</ErrorText>}
                     </p>
@@ -146,7 +146,7 @@ const SignUp = () => {
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        hasError={passwordError}
+                        $haserror={passwordError.toString()}
                     />
                     {passwordError && <ErrorText>Fill in</ErrorText>}
                     </p>

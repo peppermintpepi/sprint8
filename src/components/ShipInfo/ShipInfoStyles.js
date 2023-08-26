@@ -11,6 +11,23 @@ const BgdImg = styled.div `
     padding: 2rem;
 `
 
+const ImageContainer = styled.div `
+    position: relative;
+`
+
+const Image = styled.img `
+    width: auto;
+`
+
+const UnderLine = styled.div `
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #01baef;
+`
+
 const NameTitle = styled.h1 `
     color: #adb5bd;
     text-align: center;
@@ -64,4 +81,4 @@ const TextContainer = styled.div`
     margin-left: 3rem;
 `
 
-export { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText };
+export { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText, ImageContainer, Image, UnderLine };

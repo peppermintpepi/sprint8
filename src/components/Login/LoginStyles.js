@@ -34,7 +34,7 @@ const MainContainer = styled.div `
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
-    height: 60vh;
+    height: 70vh;
     width: 65%;
     border: none;
     background-color: white;
