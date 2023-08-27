@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText,
 ImageContainer, Image, UnderLine } from "./ShipInfoStyles";
+import Pilots from "../Pilots/Pilots";
 
 // Exercici 2 --> component per renderitzar tota la informació de les naus
 const ShipInfo = ({ ship }) => {
@@ -33,6 +34,7 @@ const ShipInfo = ({ ship }) => {
       
         getImage();
       }, [ship]);  
+
     const getShipId = (shipUrl) => {
         const id = shipUrl.split('/').filter(Boolean).slice(-1)[0];
         return id;
@@ -78,7 +80,7 @@ const ShipInfo = ({ ship }) => {
                     </TextContainer>
                 </MainContainer>
                 
-                <PilotsText><b>PILOTS:</b> {toCapitalLetter(ship.pilots.join(', '))}</PilotsText>
+                <PilotsText><b>PILOTS:</b> <Pilots pilots={ship.pilots} /></PilotsText>
             </BgdImg>
         </div>
     );
