@@ -3,6 +3,7 @@ import axios from "axios";
 import { BgdImg, NameTitle, CenteredContainer, MainContainer, TextContainer, TextDesign, PilotsText,
 ImageContainer, Image, UnderLine } from "./ShipInfoStyles";
 import Pilots from "../Pilots/Pilots";
+import Films from "../Films/Films";
 
 // Exercici 2 --> component per renderitzar tota la informació de les naus
 const ShipInfo = ({ ship }) => {
@@ -81,6 +82,8 @@ const ShipInfo = ({ ship }) => {
                 </MainContainer>
                 
                 <PilotsText><b>PILOTS:</b> <Pilots pilots={ship.pilots} /></PilotsText>
+
+                <PilotsText><b>FILMS: </b> <Films films={ship.films}/></PilotsText>
             </BgdImg>
         </div>
     );
