@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import ShipsList from "./components/ShipList/ShipList";
+import Welcome from "./components/Welcome/Welcome";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const initIsLoggedIn = localStorage.getItem('isLoggedIn') || 'false';
+    const [isLoggedIn, setIsLoggedIn] = useState(initIsLoggedIn === 'true');
 
+    useEffect(() => {
+        localStorage.setItem('isLoggedIn', initIsLoggedIn);
+    }, [initIsLoggedIn]);    
+  
+      return (
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Welcome} />
+            <Route path='/login'>
+              {isLoggedIn ? <Redirect to="/ships" /> : <Login setIsLoggedIn={setIsLoggedIn} />}
+            </Route>
+            <Route path='/signup' component={SignUp} />
+            <Route path='/ships'>
+              {isLoggedIn ? <ShipsList /> : <Redirect to="/login" />}
+            </Route>
+          </Switch>
+        </Router>
+      );
+  }
+  
 export default App;

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/peppermintpepi/Documents/WONKI_DOCS/CODING-COURSES/IT-ACADEMY/ITINERARI_REACT/sprint8/src/utilities/scrapeImages",
+      "program": "/Users/peppermintpepi/Documents/WONKI_DOCS/CODING-COURSES/IT-ACADEMY/ITINERARI_REACT/sprint8/src/utilities/scrapeImages/build/Debug/outDebug"
+    }
+  ]
+}
