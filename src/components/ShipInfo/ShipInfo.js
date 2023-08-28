@@ -14,7 +14,6 @@ const ShipInfo = ({ ship }) => {
         return str.toUpperCase();
     }
 
-
     useEffect(() => {
         const getImage = async () => {
           try {
